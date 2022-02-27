@@ -10,6 +10,7 @@ namespace GameEngine
     {
         static void Main(string[] args)
         {
+            DemoGame MyGame = new DemoGame();
 
         }
     }
