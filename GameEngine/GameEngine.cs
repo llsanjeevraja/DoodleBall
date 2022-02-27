@@ -72,7 +72,7 @@ namespace GameEngine.GameEngine
             Graphics g = e.Graphics;
             frame++;
             g.Clear(Color.Black);
-            
+            //g.DrawEllipse(Pens.White, 0, 0, 100, 100);
             g.DrawString($" This is rendering Window {frame}",new Font(FontFamily.GenericSerif,12),Brushes.White,100.0f,100.0f);
         }
 
