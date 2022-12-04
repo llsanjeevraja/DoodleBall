@@ -14,6 +14,7 @@ namespace GameEngine.GameEngine
     {
         
         public double mass;
+        public Vector2D frictionConstant ;
         public Vector2D velocity { get; set; }
         public double terminalVelocity { get; set; }
         public Vector2D acceleration { get; set; }
@@ -33,10 +34,11 @@ namespace GameEngine.GameEngine
         {
             this.mass = 100;
             this.size = 25;//set bulb size here
+            this.frictionConstant = new Vector2D(0.97,0.95);
             this.location = new Vector2D();
             this.velocity = new Vector2D();
             this.velocityMultiplier = 0.015;
-            this.acceleration = new Vector2D(0,0.08);
+            this.acceleration = new Vector2D(0,0.12);
             this.forceVector = new Vector2D();
             this.Bounds = new bounds();
             this.Sounds = new GameSounds();
@@ -97,13 +99,23 @@ namespace GameEngine.GameEngine
         }
         public void UpdatePoonchLocation(Vector2D newPoint)
         {
-            this.Poonchh.X=newPoint.X;
+            this.Poonchh.X = newPoint.X;
             this.Poonchh.Y = newPoint.Y;
+        }
+        public void UpdatePoonchLocation(double x, double y)
+        {
+            this.Poonchh.X = x;
+            this.Poonchh.Y = y;
         }
         public void UpdateNochLocation(Vector2D newPoint)
         {
             this.Nock.X = newPoint.X;
             this.Nock.Y = newPoint.Y;
+        }
+        public void UpdateNochLocation(double x, double y)
+        {
+            this.Nock.X = x;
+            this.Nock.Y = y;
         }
         public void Draw(Graphics g)
         {
