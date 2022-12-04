@@ -22,6 +22,7 @@ namespace GameEngine.GameEngine
         public Vector2D ScreenSize = new Vector2D(800,600);
         private string Title="My Game";
         private Canvas Window = null;
+        private bool boolFullScreen = false;
         private Thread GameLoopthread = null;
 
         public GameEngine(Vector2D screenSize, string title)
@@ -45,19 +46,24 @@ namespace GameEngine.GameEngine
             
         }
 
-       
+
 
         void GameLoop()
         {
             OnLoad();
             try
             {
+                DateTime frameStart;
+                DateTime frameEnd;
+                double deltaTime = 1;
                 while (GameLoopthread.IsAlive)
                 {
-                    OnDraw();
+                    frameStart = DateTime.Now;
+                    OnUpdate(deltaTime);
                     Window.BeginInvoke((MethodInvoker)delegate { Window.Refresh(); });
-                    OnUpdate();
                     Thread.Sleep(5);
+                    frameEnd = DateTime.Now;
+                    deltaTime = (frameEnd - frameStart).Milliseconds;
                 }
             }
             catch
@@ -65,13 +71,26 @@ namespace GameEngine.GameEngine
                 Console.WriteLine("Game is Loading......");
             }
         }
+        public void ToggleFullScreen()
+        {
+            if (boolFullScreen)
+            {
+                this.Window.WindowState = FormWindowState.Normal;
+                this.Window.FormBorderStyle = FormBorderStyle.FixedDialog;
+            }
+            else
+            {
+                this.Window.FormBorderStyle = FormBorderStyle.None;
+                this.Window.WindowState = FormWindowState.Maximized;
+            }
+            boolFullScreen = !boolFullScreen;
+        }
         int frame = 0;
         
 
         public abstract void OnLoad();
-        public abstract void OnUpdate();
+        public abstract void OnUpdate(double deltatime);
         public abstract void Renderer(object sender, PaintEventArgs e);
-        public abstract void OnDraw();
         public abstract void Window_KeyPress(object sender, KeyPressEventArgs e);
         public abstract void Window_MouseUp(object sender, MouseEventArgs e);
         public abstract void Window_MouseMove(object sender, MouseEventArgs e);

@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Forms.VisualStyles;
 
 namespace GameEngine.GameEngine
 {
@@ -16,6 +17,7 @@ namespace GameEngine.GameEngine
         public Vector2D velocity { get; set; }
         public Vector2D acceleration { get; set; }
         public Vector2D forceVector { get; set; }
+        public double velocityMultiplier { get; set; }
         public Vector2D location { get; set; }
         public bool IsLockedForThrow { get; set; }
         public bool IsReleased { get; set; }
@@ -30,6 +32,7 @@ namespace GameEngine.GameEngine
             this.mass = 100;
             this.location = new Vector2D();
             this.velocity = new Vector2D();
+            this.velocityMultiplier = 0.01;
             this.acceleration = new Vector2D();
             this.forceVector = new Vector2D();
             this.size = 25;//set bulb size here
@@ -48,6 +51,11 @@ namespace GameEngine.GameEngine
         }
         public void IntialiseMovement()
         {
+            this.forceVector.X = this.Arrow.Nock.X - this.Arrow.Poonchh.X;
+            this.forceVector.Y = this.Arrow.Nock.Y - this.Arrow.Poonchh.Y;
+
+            this.velocity.X = this.forceVector.X * this.velocityMultiplier;
+            this.velocity.Y = this.forceVector.Y * this.velocityMultiplier;
 
         }
     }
