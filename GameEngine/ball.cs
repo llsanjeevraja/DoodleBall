@@ -17,6 +17,7 @@ namespace GameEngine.GameEngine
         public Vector2D velocity { get; set; }
         public Vector2D acceleration { get; set; }
         public Vector2D forceVector { get; set; }
+        public double forceValue { get; set; }
         public double velocityMultiplier { get; set; }
         public Vector2D location { get; set; }
         public bool IsLockedForThrow { get; set; }
@@ -25,18 +26,20 @@ namespace GameEngine.GameEngine
         public bounds Bounds;
         public arrow Arrow=new arrow();
         public bool mouseDragging { get; set; }
-        
+        public GameSounds Sounds=null;
 
         public ball()
         {
             this.mass = 100;
+            this.size = 25;//set bulb size here
             this.location = new Vector2D();
             this.velocity = new Vector2D();
             this.velocityMultiplier = 0.01;
             this.acceleration = new Vector2D();
             this.forceVector = new Vector2D();
-            this.size = 25;//set bulb size here
+            
             this.Bounds = new bounds();
+            this.Sounds = new GameSounds();
             IsLockedForThrow = false;
         }
         public void Draw(Graphics g)
@@ -48,6 +51,12 @@ namespace GameEngine.GameEngine
         {
             this.location.X = newLocation.X;
             this.location.Y = newLocation.Y;
+        }
+        public void UpdateForceOnBall()
+        {
+            this.forceVector.X = this.Arrow.Nock.X - this.Arrow.Poonchh.X;
+            this.forceVector.Y = this.Arrow.Nock.Y - this.Arrow.Poonchh.Y;
+            this.forceValue = this.forceVector.Magnitude();
         }
         public void IntialiseMovement()
         {

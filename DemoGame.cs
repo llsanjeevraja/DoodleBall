@@ -7,6 +7,7 @@ using System.Windows.Forms;
 using System.Drawing;
 using GameEngine.GameEngine;
 using System.Windows.Forms.VisualStyles;
+using System.Media;
 
 namespace GameEngine
 {
@@ -18,11 +19,9 @@ namespace GameEngine
         private bool boolShowInfo = true;
         public ball myBall = new ball();
         myGameInput Input=new myGameInput();
-        public DemoGame() : base(new GameEngine.Vector2D(1000,800), "New Game")
+        public DemoGame() : base(new GameEngine.Vector2D(1000,800), "Doodle Ball")
         {
-            this.myBall.UpdateLocation(CartiseanToScreen(0, 0));
-            this.myBall.Arrow.UpdateNochLocation(CartiseanToScreen(0, 0));
-            this.myBall.Arrow.UpdatePoonchLocation(CartiseanToScreen(0, 0));
+           
         }
         // class functions//methods
         //game loop functions
@@ -42,11 +41,15 @@ namespace GameEngine
             if (!myBall.IsLockedForThrow && !myBall.IsReleased && Input.lButton)// ball is loaded for play
             {
                 myBall.Arrow.UpdateNochLocation(myBall.location);
+                myBall.Arrow.UpdatePoonchLocation(myBall.location);
                 myBall.IsLockedForThrow = true;
             }
             else if (myBall.IsLockedForThrow && !myBall.IsReleased && Input.lButton)// ball is captured and being dragged for throw
             {
                 myBall.Arrow.UpdatePoonchLocation(myBall.location);
+                myBall.UpdateForceOnBall();
+                
+
             }
             else if (myBall.IsLockedForThrow && !myBall.IsReleased && !Input.lButton)// means that ball has been throw away
             {
@@ -95,21 +98,25 @@ namespace GameEngine
             {
                 this.myBall.location.X = myBall.Bounds.left;
                 this.myBall.velocity.X = -this.myBall.velocity.X;
+                myBall.Sounds.ImpactSound.Play();
             }
             else if (this.myBall.location.X > myBall.Bounds.right)//impact right wall
             {
                 this.myBall.location.X = myBall.Bounds.right;
                 this.myBall.velocity.X = -this.myBall.velocity.X;
+                myBall.Sounds.ImpactSound.Play();
             }
             if (this.myBall.location.Y < myBall.Bounds.top)//impact top wall
             {
                 this.myBall.location.Y = myBall.Bounds.top;
                 this.myBall.velocity.Y = -this.myBall.velocity.Y;
+                myBall.Sounds.ImpactSound.Play();
             } 
             else if (this.myBall.location.Y > myBall.Bounds.bottom)// impact bottom wall
             {
                 this.myBall.location.Y = myBall.Bounds.bottom;
                 this.myBall.velocity.Y = -this.myBall.velocity.Y;
+                myBall.Sounds.ImpactSound.Play();
             }
                 
 
@@ -158,7 +165,7 @@ namespace GameEngine
             this.myBall.Bounds.Set(ScreenSize);
         }
 
-        // add these function to class for conversion of point system
+        // add these function to class for conversion of point system;
         private Vector2D CartiseanToScreen(Vector2D point)
         {
             Vector2D temp = new Vector2D();
@@ -194,6 +201,7 @@ namespace GameEngine
             g.DrawString($" poonch Location = ({myBall.Arrow.Poonchh.X},{myBall.Arrow.Poonchh.Y})", new Font(FontFamily.GenericSerif, this.infoTextSize), Brushes.White, 50.0f, 100.0f + 2.0f * this.infoTextSize * infoTextLocationCounter++);
             g.DrawString($" Nock Location = ({myBall.Arrow.Nock.X},{myBall.Arrow.Nock.Y})", new Font(FontFamily.GenericSerif, this.infoTextSize), Brushes.White, 50.0f, 100.0f + 2.0f * this.infoTextSize * infoTextLocationCounter++);
             g.DrawString($" Force Vector = ({myBall.forceVector.X},{myBall.forceVector.Y})", new Font(FontFamily.GenericSerif, this.infoTextSize), Brushes.White, 50.0f, 100.0f + 2.0f * this.infoTextSize * infoTextLocationCounter++);
+            g.DrawString($" ForceValue = ({myBall.forceValue})", new Font(FontFamily.GenericSerif, this.infoTextSize), Brushes.White, 50.0f, 100.0f + 2.0f * this.infoTextSize * infoTextLocationCounter++);
             g.DrawString($" Ball Velocity = ({myBall.velocity.X},{myBall.velocity.Y})", new Font(FontFamily.GenericSerif, this.infoTextSize), Brushes.White, 50.0f, 100.0f + 2.0f * this.infoTextSize * infoTextLocationCounter++);
             //g.DrawString($" 'P'   : Play/Pause ", new Font(FontFamily.GenericSerif, this.infoTextSize), Brushes.White, 50.0f, 100.0f + 2.0f * this.infoTextSize * this.infoTextLocationCounter++);
 

@@ -56,6 +56,7 @@ namespace GameEngine.GameEngine
             {
                 DateTime frameStart;
                 DateTime frameEnd;
+                double FixedFrameRate = 0.02;// formaintaining frame rate of 50
                 double deltaTime = 1;
                 while (GameLoopthread.IsAlive)
                 {
@@ -65,6 +66,7 @@ namespace GameEngine.GameEngine
                     Thread.Sleep(5);
                     frameEnd = DateTime.Now;
                     deltaTime = (frameEnd - frameStart).Milliseconds;
+                    
                 }
             }
             catch
