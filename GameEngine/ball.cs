@@ -34,11 +34,11 @@ namespace GameEngine.GameEngine
         {
             this.mass = 100;
             this.size = 25;//set bulb size here
-            this.frictionConstant = new Vector2D(0.97,0.95);
+            this.frictionConstant = new Vector2D(0.90,0.85);
             this.location = new Vector2D();
             this.velocity = new Vector2D();
             this.velocityMultiplier = 0.015;
-            this.acceleration = new Vector2D(0,0.12);
+            this.acceleration = new Vector2D(0,0.5);
             this.forceVector = new Vector2D();
             this.Bounds = new bounds();
             this.Sounds = new GameSounds();
@@ -74,8 +74,6 @@ namespace GameEngine.GameEngine
         {
             this.velocity.X = 0;
             this.velocity.Y = 0;
-            this.acceleration.X = 0;
-            this.acceleration.Y = 0;
             this.IsReleased = false;
         }
     }
@@ -102,12 +100,22 @@ namespace GameEngine.GameEngine
             this.Poonchh.X=newPoint.X;
             this.Poonchh.Y = newPoint.Y;
         }
+        public void UpdatePoonchLocation(double x,double y)
+        {
+            this.Poonchh.X = x;
+            this.Poonchh.Y = y;
+        }
         public void UpdateNochLocation(Vector2D newPoint)
         {
             this.Nock.X = newPoint.X;
             this.Nock.Y = newPoint.Y;
         }
-        public void Draw(Graphics g)
+        public void UpdateNochLocation(double x, double y)
+        {
+            this.Nock.X = x;
+            this.Nock.Y = y;
+        }
+            public void Draw(Graphics g)
         {
             //g.DrawLine(new Pen(Brushes.Blue, 5), (float)this.Arrow.Poonchh.X, (float)this.Arrow.Poonchh.Y, (float)0, (float)0);
             g.DrawLine(new Pen(Brushes.Blue, this.Width), (float)this.Poonchh.X, (float)this.Poonchh.Y, (float)this.Nock.X, (float)this.Nock.Y);
