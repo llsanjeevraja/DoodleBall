@@ -15,6 +15,7 @@ namespace GameEngine.GameEngine
         
         public double mass;
         public Vector2D velocity { get; set; }
+        public double terminalVelocity { get; set; }
         public Vector2D acceleration { get; set; }
         public Vector2D forceVector { get; set; }
         public double forceValue { get; set; }
@@ -22,10 +23,10 @@ namespace GameEngine.GameEngine
         public Vector2D location { get; set; }
         public bool IsLockedForThrow { get; set; }
         public bool IsReleased { get; set; }
+        
         public float size;
         public bounds Bounds;
         public arrow Arrow=new arrow();
-        public bool mouseDragging { get; set; }
         public GameSounds Sounds=null;
 
         public ball()
@@ -34,13 +35,13 @@ namespace GameEngine.GameEngine
             this.size = 25;//set bulb size here
             this.location = new Vector2D();
             this.velocity = new Vector2D();
-            this.velocityMultiplier = 0.01;
-            this.acceleration = new Vector2D();
+            this.velocityMultiplier = 0.015;
+            this.acceleration = new Vector2D(0,0.08);
             this.forceVector = new Vector2D();
-            
             this.Bounds = new bounds();
             this.Sounds = new GameSounds();
             IsLockedForThrow = false;
+            terminalVelocity = 10;
         }
         public void Draw(Graphics g)
         {
@@ -60,12 +61,20 @@ namespace GameEngine.GameEngine
         }
         public void IntialiseMovement()
         {
-            this.forceVector.X = this.Arrow.Nock.X - this.Arrow.Poonchh.X;
-            this.forceVector.Y = this.Arrow.Nock.Y - this.Arrow.Poonchh.Y;
+            this.forceVector.X = (this.Arrow.Nock.X - this.Arrow.Poonchh.X) * this.velocityMultiplier;
+            this.forceVector.Y = (this.Arrow.Nock.Y - this.Arrow.Poonchh.Y) * this.velocityMultiplier;
 
-            this.velocity.X = this.forceVector.X * this.velocityMultiplier;
-            this.velocity.Y = this.forceVector.Y * this.velocityMultiplier;
+            this.velocity.X = this.forceVector.X ;
+            this.velocity.Y = this.forceVector.Y ;
 
+        }
+        public void Reset()
+        {
+            this.velocity.X = 0;
+            this.velocity.Y = 0;
+            this.acceleration.X = 0;
+            this.acceleration.Y = 0;
+            this.IsReleased = false;
         }
     }
 

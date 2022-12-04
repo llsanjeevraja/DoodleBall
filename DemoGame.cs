@@ -35,6 +35,10 @@ namespace GameEngine
         {
             this.deltaTime = deltatime;
             //called each time in loop after draw
+            myBall.location.X = myBall.location.X + myBall.velocity.X;
+            myBall.location.Y = myBall.location.Y + myBall.velocity.Y;
+            myBall.velocity.X = myBall.velocity.X + myBall.acceleration.X;
+            myBall.velocity.Y = myBall.velocity.Y + myBall.acceleration.Y;
             if (!myBall.IsReleased)
                 myBall.UpdateLocation(Input.mouseLocation);
             this.CheckBounds();
@@ -56,9 +60,11 @@ namespace GameEngine
                 myBall.IsLockedForThrow = false;
                 myBall.IsReleased = true;
                 myBall.IntialiseMovement();
+
             }
-            myBall.location.X = myBall.location.X + myBall.velocity.X;
-            myBall.location.Y = myBall.location.Y + myBall.velocity.Y;
+
+            
+
             frame++;
         }
         
@@ -94,29 +100,30 @@ namespace GameEngine
         }
         private void CheckBounds()
         {
-            if (this.myBall.location.X < myBall.Bounds.left)// impact left wall
+            if (this.myBall.location.X <= myBall.Bounds.left)// impact left wall
             {
                 this.myBall.location.X = myBall.Bounds.left;
                 this.myBall.velocity.X = -this.myBall.velocity.X;
                 myBall.Sounds.ImpactSound.Play();
             }
-            else if (this.myBall.location.X > myBall.Bounds.right)//impact right wall
+            else if (this.myBall.location.X >= myBall.Bounds.right)//impact right wall
             {
                 this.myBall.location.X = myBall.Bounds.right;
                 this.myBall.velocity.X = -this.myBall.velocity.X;
                 myBall.Sounds.ImpactSound.Play();
             }
-            if (this.myBall.location.Y < myBall.Bounds.top)//impact top wall
+            if (this.myBall.location.Y <= myBall.Bounds.top)//impact top wall
             {
                 this.myBall.location.Y = myBall.Bounds.top;
                 this.myBall.velocity.Y = -this.myBall.velocity.Y;
                 myBall.Sounds.ImpactSound.Play();
             } 
-            else if (this.myBall.location.Y > myBall.Bounds.bottom)// impact bottom wall
+            else if (this.myBall.location.Y >= myBall.Bounds.bottom)// impact bottom wall
             {
                 this.myBall.location.Y = myBall.Bounds.bottom;
                 this.myBall.velocity.Y = -this.myBall.velocity.Y;
                 myBall.Sounds.ImpactSound.Play();
+
             }
                 
 
@@ -131,6 +138,8 @@ namespace GameEngine
                 boolShowInfo = !boolShowInfo;
             else if (e.KeyChar == (char)Keys.F || e.KeyChar == (char)Keys.F + 32)
                 ToggleFullScreen();
+            else if (e.KeyChar == (char)Keys.R || e.KeyChar == (char)Keys.R + 32)
+                myBall.Reset();
 
         }
         public override void Window_MouseUp(object sender, MouseEventArgs e)
@@ -200,9 +209,9 @@ namespace GameEngine
             g.DrawString($" Game bound (left ={myBall.Bounds.left}, right= {myBall.Bounds.right}, top={myBall.Bounds.top}, bottom={myBall.Bounds.bottom})", new Font(FontFamily.GenericSerif, this.infoTextSize), Brushes.White, 50.0f, 100.0f + 2.0f * this.infoTextSize * infoTextLocationCounter++);
             g.DrawString($" poonch Location = ({myBall.Arrow.Poonchh.X},{myBall.Arrow.Poonchh.Y})", new Font(FontFamily.GenericSerif, this.infoTextSize), Brushes.White, 50.0f, 100.0f + 2.0f * this.infoTextSize * infoTextLocationCounter++);
             g.DrawString($" Nock Location = ({myBall.Arrow.Nock.X},{myBall.Arrow.Nock.Y})", new Font(FontFamily.GenericSerif, this.infoTextSize), Brushes.White, 50.0f, 100.0f + 2.0f * this.infoTextSize * infoTextLocationCounter++);
-            g.DrawString($" Force Vector = ({myBall.forceVector.X},{myBall.forceVector.Y})", new Font(FontFamily.GenericSerif, this.infoTextSize), Brushes.White, 50.0f, 100.0f + 2.0f * this.infoTextSize * infoTextLocationCounter++);
             g.DrawString($" ForceValue = ({myBall.forceValue})", new Font(FontFamily.GenericSerif, this.infoTextSize), Brushes.White, 50.0f, 100.0f + 2.0f * this.infoTextSize * infoTextLocationCounter++);
             g.DrawString($" Ball Velocity = ({myBall.velocity.X},{myBall.velocity.Y})", new Font(FontFamily.GenericSerif, this.infoTextSize), Brushes.White, 50.0f, 100.0f + 2.0f * this.infoTextSize * infoTextLocationCounter++);
+            g.DrawString($" velocity Value  = ({myBall.forceVector.Magnitude()})", new Font(FontFamily.GenericSerif, this.infoTextSize), Brushes.White, 50.0f, 100.0f + 2.0f * this.infoTextSize * infoTextLocationCounter++);
             //g.DrawString($" 'P'   : Play/Pause ", new Font(FontFamily.GenericSerif, this.infoTextSize), Brushes.White, 50.0f, 100.0f + 2.0f * this.infoTextSize * this.infoTextLocationCounter++);
 
         }
