@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Drawing;
 using GameEngine.GameEngine;
-
+using System.Windows.Forms.VisualStyles;
 
 namespace GameEngine
 {
@@ -18,7 +18,7 @@ namespace GameEngine
         private bool boolShowInfo = true;
         public ball myBall = new ball();
         myGameInput Input=new myGameInput();
-        public DemoGame() : base(new GameEngine.Vector2D((int)Screen.PrimaryScreen.Bounds.Width, (int)Screen.PrimaryScreen.Bounds.Height), "New Game")
+        public DemoGame() : base(new GameEngine.Vector2D(1000,800), "New Game")
         {
             
         }
@@ -120,7 +120,8 @@ namespace GameEngine
                 Application.Exit();
             else if (e.KeyChar == (char)Keys.I || e.KeyChar == (char)Keys.I + 32)
                 boolShowInfo = !boolShowInfo;
-
+            else if (e.KeyChar == (char)Keys.F || e.KeyChar == (char)Keys.F + 32)
+                ToggleFullScreen();
 
         }
         public override void Window_MouseUp(object sender, MouseEventArgs e)
@@ -147,7 +148,13 @@ namespace GameEngine
         {
             this.Input.updateMouseLocation(e.Location);
         }
-
+        public override void Window_Resize(object sender, EventArgs e)
+        {
+            Control control = (Control)sender;
+            this.ScreenSize.X = control.Width;
+            this.ScreenSize.Y = control.Height;
+            this.myBall.Bounds.Set(ScreenSize);
+        }
 
         // add these function to class for conversion of point system
         private Vector2D CartiseanToScreen(Vector2D point)

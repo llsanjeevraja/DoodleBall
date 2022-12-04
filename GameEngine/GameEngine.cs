@@ -40,6 +40,7 @@ namespace GameEngine.GameEngine
             Window.MouseUp += Window_MouseUp;
             Window.MouseMove += Window_MouseMove;
             Window.MouseDown += Window_MouseDown;
+            Window.Resize += Window_Resize;
             GameLoopthread=new Thread(GameLoop);
             GameLoopthread.Start();
             Application.Run(Window);
@@ -85,7 +86,6 @@ namespace GameEngine.GameEngine
             }
             boolFullScreen = !boolFullScreen;
         }
-        int frame = 0;
         
 
         public abstract void OnLoad();
@@ -95,7 +95,7 @@ namespace GameEngine.GameEngine
         public abstract void Window_MouseUp(object sender, MouseEventArgs e);
         public abstract void Window_MouseMove(object sender, MouseEventArgs e);
         public abstract void Window_MouseDown(object sender, MouseEventArgs e);
-
+        public abstract void Window_Resize(object sender, EventArgs e);
 
 
 

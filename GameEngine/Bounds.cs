@@ -20,5 +20,6 @@ namespace GameEngine.GameEngine
             this.top = screensize.Y * 0.1;
             this.bottom = screensize.Y * 0.9;
         }
+        
     }
 }
