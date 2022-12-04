@@ -55,7 +55,12 @@ namespace GameEngine.GameEngine
             this.location.X = newLocation.X;
             this.location.Y = newLocation.Y;
         }
-        public void UpdateForceOnBall()
+        public void UpdateLocation(double x,double y)
+        {
+            this.location.X = x;
+            this.location.Y = y;
+        }
+    public void UpdateForceOnBall()
         {
             this.forceVector.X = this.Arrow.Nock.X - this.Arrow.Poonchh.X;
             this.forceVector.Y = this.Arrow.Nock.Y - this.Arrow.Poonchh.Y;

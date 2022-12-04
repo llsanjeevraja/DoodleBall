@@ -28,11 +28,12 @@ namespace GameEngine
         public override void OnLoad()
         {
             //called only once.
-            myBall.location = CartiseanToScreen(0,0);
+            
             myBall.Bounds.Set(this.ScreenSize);
             myBall.IsLockedForThrow = true;
-            myBall.Arrow.UpdatePoonchLocation(myBall.location);
-            myBall.Arrow.UpdateNochLocation()
+            myBall.UpdateLocation(this.ScreenSize.X / 2, this.ScreenSize.Y * 0.75);
+            myBall.Arrow.UpdatePoonchLocation(this.ScreenSize.X / 2, this.ScreenSize.Y*0.75);
+            myBall.Arrow.UpdateNochLocation(this.ScreenSize.X / 2, 0);
 
         }
         public override void OnUpdate(double deltatime)
@@ -49,7 +50,7 @@ namespace GameEngine
             Graphics g = e.Graphics;
             g.Clear(Color.Black);
             // enter your code here
-            DrawBoundFrame(g);
+            //DrawBoundFrame(g);
 
             myBall.Draw(g);
             if (!myBall.IsReleased && myBall.IsLockedForThrow)
@@ -152,6 +153,9 @@ namespace GameEngine
             this.ScreenSize.X = control.Width;
             this.ScreenSize.Y = control.Height;
             this.myBall.Bounds.Set(ScreenSize);
+            myBall.UpdateLocation(this.ScreenSize.X / 2, this.ScreenSize.Y * 0.75);
+            myBall.Arrow.UpdatePoonchLocation(this.ScreenSize.X / 2, this.ScreenSize.Y * 0.75);
+            myBall.Arrow.UpdateNochLocation(this.ScreenSize.X / 2, 0);
         }
 
         // add these function to class for conversion of point system;
