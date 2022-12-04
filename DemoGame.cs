@@ -80,31 +80,23 @@ namespace GameEngine
             {
                 this.myBall.location.X = myBall.Bounds.left;
                 this.myBall.velocity.X = -myBall.frictionConstant.X * this.myBall.velocity.X;
-                if (myBall.velocity.Magnitude() > 1)
-                    myBall.Sounds.ImpactSound.Play();    
             }
             else if (this.myBall.location.X >= myBall.Bounds.right)//impact right wall
             {
                 this.myBall.location.X = myBall.Bounds.right;
                 this.myBall.velocity.X = -myBall.frictionConstant.X * this.myBall.velocity.X;
-                if (myBall.velocity.Magnitude() > 1)
-                    myBall.Sounds.ImpactSound.Play();
             }
             if (this.myBall.location.Y <= myBall.Bounds.top)//impact top wall
             {
                 this.myBall.location.Y = myBall.Bounds.top;
                 this.myBall.velocity.Y = -myBall.frictionConstant.Y * this.myBall.velocity.Y;
-                if (myBall.velocity.Magnitude() > 1)
-                    myBall.Sounds.ImpactSound.Play();
             } 
             else if (this.myBall.location.Y >= myBall.Bounds.bottom)// impact bottom wall
             {
                 this.myBall.location.Y = myBall.Bounds.bottom;
                 this.myBall.velocity.X = myBall.frictionConstant.X * this.myBall.velocity.X; 
                 this.myBall.velocity.Y = -this.myBall.frictionConstant.Y*this.myBall.velocity.Y;
-                
-                if (myBall.velocity.Magnitude() >2)
-                    myBall.Sounds.ImpactSound.Play();
+
             }
                 
 
