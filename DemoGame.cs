@@ -20,7 +20,9 @@ namespace GameEngine
         myGameInput Input=new myGameInput();
         public DemoGame() : base(new GameEngine.Vector2D(1000,800), "New Game")
         {
-            
+            this.myBall.UpdateLocation(CartiseanToScreen(0, 0));
+            this.myBall.Arrow.UpdateNochLocation(CartiseanToScreen(0, 0));
+            this.myBall.Arrow.UpdatePoonchLocation(CartiseanToScreen(0, 0));
         }
         // class functions//methods
         //game loop functions
@@ -164,6 +166,7 @@ namespace GameEngine
             temp.Y = this.ScreenSize.Y / 2 - point.Y;
             return temp;
         }
+
         private Vector2D CartiseanToScreen(double x, double y)
         {
             Vector2D temp = new Vector2D();
