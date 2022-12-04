@@ -46,9 +46,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DemoGame.cs" />
+    <Compile Include="GameEngine\Bounds.cs" />
+    <Compile Include="GameEngine\ball.cs" />
     <Compile Include="GameEngine\GameEngine.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="GameEngine\Input.cs" />
     <Compile Include="GameEngine\Vector2D.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

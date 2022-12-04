@@ -16,9 +16,11 @@ namespace GameEngine
         private int infoTextSize = 12;
         private bool boolShowInfo = true;
         private int infoTextLocationCounter = 0;
-        ball myBall = new ball();
+        public ball myBall = new ball();
+        myGameInput Input=new myGameInput();
         public DemoGame() : base(new GameEngine.Vector2D((int)Screen.PrimaryScreen.Bounds.Width, (int)Screen.PrimaryScreen.Bounds.Height), "New Game")
         {
+            
         }
         // class functions//methods
         //game loop functions
@@ -31,12 +33,6 @@ namespace GameEngine
         public override void OnUpdate()
         {
             //called each time in loop after draw
-            myBall.location.X = myBall.location.X + myBall.velocity.X;
-            myBall.location.Y = myBall.location.Y + myBall.velocity.Y;
-
-        }
-        public override void OnDraw()// is called before the refresh call and upadate
-        {
             if (!myBall.IsReleased)
                 myBall.UpdateLocation(Input.mouseLocation);
             this.CheckBounds();
@@ -45,29 +41,38 @@ namespace GameEngine
                 myBall.Arrow.UpdateNochLocation(myBall.location);
                 myBall.IsLockedForThrow = true;
             }
-            else if(myBall.IsLockedForThrow && !myBall.IsReleased && Input.lButton)// ball is captured and being dragged for throw
+            else if (myBall.IsLockedForThrow && !myBall.IsReleased && Input.lButton)// ball is captured and being dragged for throw
             {
                 myBall.Arrow.UpdatePoonchLocation(myBall.location);
             }
-            else if(myBall.IsLockedForThrow && !myBall.IsReleased && !Input.lButton)// means that ball has been throw away
+            else if (myBall.IsLockedForThrow && !myBall.IsReleased && !Input.lButton)// means that ball has been throw away
             {
                 myBall.IsLockedForThrow = false;
                 myBall.IsReleased = true;
-                myBall.IntialiseVelocity();
+                myBall.IntialiseMovement();
             }
-            
+
+            myBall.location.X = myBall.location.X;// + myBall.velocity.X;
+            myBall.location.Y = myBall.location.Y;// + myBall.velocity.Y;
             frame++;
         }
+        public override void OnDraw()// is called before the refresh call and upadate
+        {
+            
+        }
         // input handlers 
+
+
+
         public override void Renderer(object sender, PaintEventArgs e)
         {
             Graphics g = e.Graphics;
             g.Clear(Color.Black);
             // enter your code here
             DrawBoundFrame(g);
-            
+
             myBall.Draw(g);
-            if(!myBall.IsReleased && myBall.IsLockedForThrow)
+            if (!myBall.IsReleased && myBall.IsLockedForThrow)
                 myBall.Arrow.Draw(g);
 
             if (boolShowInfo)
@@ -183,7 +188,6 @@ namespace GameEngine
             g.DrawString($" Game bound (left ={myBall.Bounds.left}, right= {myBall.Bounds.right}, top={myBall.Bounds.top}, bottom={myBall.Bounds.bottom})", new Font(FontFamily.GenericSerif, this.infoTextSize), Brushes.White, 50.0f, 100.0f + 2.0f * this.infoTextSize * this.infoTextLocationCounter++);
             g.DrawString($" poonch Location = ({myBall.Arrow.Poonchh.X},{myBall.Arrow.Poonchh.Y})", new Font(FontFamily.GenericSerif, this.infoTextSize), Brushes.White, 50.0f, 100.0f + 2.0f * this.infoTextSize * this.infoTextLocationCounter++);
             g.DrawString($" Nock Location = ({myBall.Arrow.Nock.X},{myBall.Arrow.Nock.Y})", new Font(FontFamily.GenericSerif, this.infoTextSize), Brushes.White, 50.0f, 100.0f + 2.0f * this.infoTextSize * this.infoTextLocationCounter++);
-            g.DrawString($" Force Value = ({myBall.forceValue})", new Font(FontFamily.GenericSerif, this.infoTextSize), Brushes.White, 50.0f, 100.0f + 2.0f * this.infoTextSize * this.infoTextLocationCounter++);
             g.DrawString($" Force Vector = ({myBall.forceVector.X},{myBall.forceVector.Y})", new Font(FontFamily.GenericSerif, this.infoTextSize), Brushes.White, 50.0f, 100.0f + 2.0f * this.infoTextSize * this.infoTextLocationCounter++);
             g.DrawString($" Ball Velocity = ({myBall.velocity.X},{myBall.velocity.Y})", new Font(FontFamily.GenericSerif, this.infoTextSize), Brushes.White, 50.0f, 100.0f + 2.0f * this.infoTextSize * this.infoTextLocationCounter++);
             //g.DrawString($" 'P'   : Play/Pause ", new Font(FontFamily.GenericSerif, this.infoTextSize), Brushes.White, 50.0f, 100.0f + 2.0f * this.infoTextSize * this.infoTextLocationCounter++);

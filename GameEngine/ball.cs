@@ -7,36 +7,49 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace bulb
+namespace GameEngine.GameEngine
 {
-    public class Bulb
+    public class ball
     {
+        
+        public double mass;
+        public Vector2D velocity { get; set; }
+        public Vector2D acceleration { get; set; }
+        public Vector2D forceVector { get; set; }
         public Vector2D location { get; set; }
-        public bool Islocked { get; set; }
+        public bool IsLockedForThrow { get; set; }
+        public bool IsReleased { get; set; }
         public float size;
-        public playbound Bounds;
+        public bounds Bounds;
         public arrow Arrow=new arrow();
         public bool mouseDragging { get; set; }
         
 
-        public Bulb()
+        public ball()
         {
+            this.mass = 100;
             this.location = new Vector2D();
+            this.velocity = new Vector2D();
+            this.acceleration = new Vector2D();
+            this.forceVector = new Vector2D();
             this.size = 25;//set bulb size here
-            this.Bounds = new playbound();
-            Islocked = false;
+            this.Bounds = new bounds();
+            IsLockedForThrow = false;
         }
-        public void Show(Graphics g)
+        public void Draw(Graphics g)
         {
             g.FillEllipse(Brushes.Red, (float)this.location.X-this.size/2, (float)this.location.Y-this.size/2,this.size,this.size);
-            
         }
-        public void DrawArrow(Graphics g)
+        
+        public void UpdateLocation(Vector2D newLocation)
         {
-            //g.DrawLine(new Pen(Brushes.Blue, 5), (float)this.Arrow.Poonchh.X, (float)this.Arrow.Poonchh.Y, (float)0, (float)0);
-            g.DrawLine(new Pen(Brushes.Blue, this.Arrow.Width), (float)this.Arrow.Poonchh.X, (float)this.Arrow.Poonchh.Y, (float)this.Arrow.Nock.X, (float)this.Arrow.Nock.Y);
+            this.location.X = newLocation.X;
+            this.location.Y = newLocation.Y;
         }
+        public void IntialiseMovement()
+        {
 
+        }
     }
 
     public class arrow
@@ -56,17 +69,21 @@ namespace bulb
             this.Nock = new Vector2D();
             this.Poonchh = new Vector2D();
         }
-        public void UpdatePoonchLocation(Point newPoint)
+        public void UpdatePoonchLocation(Vector2D newPoint)
         {
             this.Poonchh.X=newPoint.X;
             this.Poonchh.Y = newPoint.Y;
         }
-        public void UpdateNochLocation(Point newPoint)
+        public void UpdateNochLocation(Vector2D newPoint)
         {
             this.Nock.X = newPoint.X;
             this.Nock.Y = newPoint.Y;
         }
-
+        public void Draw(Graphics g)
+        {
+            //g.DrawLine(new Pen(Brushes.Blue, 5), (float)this.Arrow.Poonchh.X, (float)this.Arrow.Poonchh.Y, (float)0, (float)0);
+            g.DrawLine(new Pen(Brushes.Blue, this.Width), (float)this.Poonchh.X, (float)this.Poonchh.Y, (float)this.Nock.X, (float)this.Nock.Y);
+        }
 
     }
 }

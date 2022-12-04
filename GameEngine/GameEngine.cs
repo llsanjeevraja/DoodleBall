@@ -19,7 +19,7 @@ namespace GameEngine.GameEngine
     }
     public abstract class GameEngine
     {
-        private Vector2D ScreenSize = new Vector2D(800,600);
+        public Vector2D ScreenSize = new Vector2D(800,600);
         private string Title="My Game";
         private Canvas Window = null;
         private Thread GameLoopthread = null;
@@ -36,17 +36,16 @@ namespace GameEngine.GameEngine
             Window.Location = new Point(0, 0);
             Window.Paint += Renderer;
             Window.KeyPress += Window_KeyPress;
+            Window.MouseUp += Window_MouseUp;
+            Window.MouseMove += Window_MouseMove;
+            Window.MouseDown += Window_MouseDown;
             GameLoopthread=new Thread(GameLoop);
             GameLoopthread.Start();
             Application.Run(Window);
             
         }
 
-        private void Window_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if(e.KeyChar== (char)Keys.Escape)
-                Application.Exit();
-        }
+       
 
         void GameLoop()
         {
@@ -67,20 +66,19 @@ namespace GameEngine.GameEngine
             }
         }
         int frame = 0;
-        private void Renderer(object sender, PaintEventArgs e)
-        {
-            Graphics g = e.Graphics;
-            frame++;
-            g.Clear(Color.Black);
-            
-            g.DrawString($" This is rendering Window {frame}",new Font(FontFamily.GenericSerif,12),Brushes.White,100.0f,100.0f);
-        }
+        
 
         public abstract void OnLoad();
-        public abstract void OnUpdate();  
+        public abstract void OnUpdate();
+        public abstract void Renderer(object sender, PaintEventArgs e);
         public abstract void OnDraw();
+        public abstract void Window_KeyPress(object sender, KeyPressEventArgs e);
+        public abstract void Window_MouseUp(object sender, MouseEventArgs e);
+        public abstract void Window_MouseMove(object sender, MouseEventArgs e);
+        public abstract void Window_MouseDown(object sender, MouseEventArgs e);
 
-        
+
+
 
     }
 }
