@@ -70,6 +70,7 @@ namespace GameEngine
                 myBall.IntialiseMovement();
 
             }
+            // put someting here for ball stretch  may  be sound
             frame++;
         }
         
@@ -129,6 +130,7 @@ namespace GameEngine
             else if (this.myBall.location.Y >= myBall.Bounds.bottom)// impact bottom wall
             {
                 this.myBall.location.Y = myBall.Bounds.bottom;
+                this.myBall.velocity.X = myBall.Environment.frictionConstant.X * this.myBall.velocity.X;// impacting on ground also reduce horizontal spped
                 this.myBall.velocity.Y = -this.myBall.Environment.frictionConstant.Y*this.myBall.velocity.Y;
                 if (myBall.IsReleased)
                     myBall.Sounds.ImpactSound.Play();
@@ -152,7 +154,6 @@ namespace GameEngine
         }
         public override void Window_KeyUp(object sender, System.Windows.Forms.KeyEventArgs e)
         {
-            
             
         }
         public override void Window_KeyDown(object sender, KeyEventArgs e)
@@ -226,6 +227,7 @@ namespace GameEngine
             //g.DrawString($" Game bound (left ={myBall.Bounds.left}, right= {myBall.Bounds.right}, top={myBall.Bounds.top}, bottom={myBall.Bounds.bottom})", new Font(FontFamily.GenericSerif, this.infoTextSize), Brushes.White, 50.0f, 100.0f + 2.0f * this.infoTextSize * infoTextLocationCounter++);
             g.DrawString($" poonch Location = ({(myBall.Arrow.Poonchh.X).ToString("0.00")},{(myBall.Arrow.Poonchh.Y).ToString("0.00")})", new Font(FontFamily.GenericSerif, this.infoTextSize), Brushes.White, 50.0f, 100.0f + 2.0f * this.infoTextSize * infoTextLocationCounter++);
             g.DrawString($" Nock Location = ({(myBall.Arrow.Nock.X).ToString("0.00")},{(myBall.Arrow.Nock.Y).ToString("0.00")})", new Font(FontFamily.GenericSerif, this.infoTextSize), Brushes.White, 50.0f, 100.0f + 2.0f * this.infoTextSize * infoTextLocationCounter++);
+            g.DrawString($" Arrow Length = ({(myBall.Arrow.Length()).ToString("0.00")}", new Font(FontFamily.GenericSerif, this.infoTextSize), Brushes.White, 50.0f, 100.0f + 2.0f * this.infoTextSize * infoTextLocationCounter++);
             g.DrawString($" ForceValue = ({(myBall.forceValue).ToString("0.00")})", new Font(FontFamily.GenericSerif, this.infoTextSize), Brushes.White, 50.0f, 100.0f + 2.0f * this.infoTextSize * infoTextLocationCounter++);
             g.DrawString($" Velocity = ({(myBall.velocity.X).ToString("0.00")},{(myBall.velocity.Y).ToString("0.00")})", new Font(FontFamily.GenericSerif, this.infoTextSize), Brushes.White, 50.0f, 100.0f + 2.0f * this.infoTextSize * infoTextLocationCounter++);
             g.DrawString($" velocity Value  = ({(myBall.velocity.Magnitude()).ToString("0.00")})", new Font(FontFamily.GenericSerif, this.infoTextSize), Brushes.White, 50.0f, 100.0f + 2.0f * this.infoTextSize * infoTextLocationCounter++);

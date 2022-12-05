@@ -81,9 +81,9 @@ namespace GameEngine.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
         /// </summary>
-        internal static System.IO.UnmanagedMemoryStream StretchSound {
+        internal static System.IO.UnmanagedMemoryStream Stretch {
             get {
-                return ResourceManager.GetStream("StretchSound", resourceCulture);
+                return ResourceManager.GetStream("Stretch", resourceCulture);
             }
         }
     }

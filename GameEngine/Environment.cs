@@ -16,7 +16,7 @@ namespace GameEngine.GameEngine
         public Environment()
         {
             this.mass = 100;
-            this.frictionConstant = new Vector2D(0.97, 0.95);
+            this.frictionConstant = new Vector2D(0.8, 0.5);
             this.terminalVelocity = 10;
             this.HaveGravity = true;
         }

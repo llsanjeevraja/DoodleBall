@@ -124,7 +124,7 @@
   <data name="ImpactDrum" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\ImpactDrum.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="StretchSound" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\tightingSound.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="Stretch" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Stretch.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
 </root>

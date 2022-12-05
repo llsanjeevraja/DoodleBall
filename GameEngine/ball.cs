@@ -84,6 +84,8 @@ namespace GameEngine.GameEngine
         public Vector2D Nock {get; set; }
         public Vector2D Poonchh {get; set; }
         public int Width = 2;
+        public double length = 0;
+
         public Vector2D GetVector()
         {
             Vector2D temp = new Vector2D();
@@ -100,21 +102,30 @@ namespace GameEngine.GameEngine
         {
             this.Poonchh.X = newPoint.X;
             this.Poonchh.Y = newPoint.Y;
+            Length();
         }
         public void UpdatePoonchLocation(double x, double y)
         {
             this.Poonchh.X = x;
             this.Poonchh.Y = y;
+            Length();
         }
         public void UpdateNochLocation(Vector2D newPoint)
         {
             this.Nock.X = newPoint.X;
             this.Nock.Y = newPoint.Y;
+            Length();
         }
         public void UpdateNochLocation(double x, double y)
         {
             this.Nock.X = x;
             this.Nock.Y = y;
+            Length();
+        }
+        public double Length()
+        {
+            length = Math.Sqrt((this.Poonchh.X-this.Poonchh.Y)* (this.Poonchh.X - this.Poonchh.Y)+ (this.Nock.X - this.Nock.Y)* (this.Nock.X - this.Nock.Y));
+            return length;
         }
         public void Draw(Graphics g)
         {

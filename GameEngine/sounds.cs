@@ -18,7 +18,7 @@ namespace GameEngine.GameEngine
             System.IO.Stream str = Properties.Resources.glass_Ting;
             ImpactSound = new System.Media.SoundPlayer(str);
             
-            str = Properties.Resources.StretchSound;
+            str = Properties.Resources.Stretch;
             StretchSound = new System.Media.SoundPlayer(str);
             
         }
