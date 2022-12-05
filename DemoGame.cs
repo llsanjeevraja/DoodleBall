@@ -52,8 +52,7 @@ namespace GameEngine
             {
                 myBall.Arrow.UpdatePoonchLocation(myBall.location);
                 myBall.UpdateForceOnBall();
-                
-
+ 
             }
             else if (myBall.IsLockedForThrow && !myBall.IsReleased && !Input.lButton)// means that ball has been throw away
             {
@@ -121,11 +120,7 @@ namespace GameEngine
                 this.myBall.velocity.Y = -this.myBall.frictionConstant.Y*this.myBall.velocity.Y;
                 
                 myBall.Sounds.ImpactSound.Play();
-
-
             }
-                
-
         }
         
         // input handlers

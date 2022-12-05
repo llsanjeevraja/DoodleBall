@@ -37,8 +37,8 @@ namespace GameEngine.GameEngine
             this.frictionConstant = new Vector2D(0.97,0.95);
             this.location = new Vector2D();
             this.velocity = new Vector2D();
-            this.velocityMultiplier = 0.015;
-            this.acceleration = new Vector2D(0,0.12);
+            this.velocityMultiplier = 0.02;
+            this.acceleration = new Vector2D(0,0.3);
             this.forceVector = new Vector2D();
             this.Bounds = new bounds();
             this.Sounds = new GameSounds();
