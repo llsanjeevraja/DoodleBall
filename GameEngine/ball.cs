@@ -12,6 +12,7 @@ namespace GameEngine.GameEngine
 {
     public class ball
     {
+        public GameSounds Sounds = null;
         public Color color { get; set; } = new Color();
         public Vector2D velocity { get; set; }
         public Vector2D acceleration { get; set; }
@@ -26,10 +27,11 @@ namespace GameEngine.GameEngine
         public float size;
         public bounds Bounds;
         public arrow Arrow=new arrow();
-        public GameSounds Sounds=null;
+        
 
         public ball()
         {
+            this.Sounds = new GameSounds();
             this.size = 25;//set bulb size here
             this.location = new Vector2D();
             this.velocity = new Vector2D();
@@ -38,7 +40,6 @@ namespace GameEngine.GameEngine
             this.forceVector = new Vector2D();
             this.Environment = new Environment();
             this.Bounds = new bounds();
-            this.Sounds = new GameSounds();
             this.IsLockedForThrow = false;
             this.color = Color.YellowGreen;
             

@@ -109,26 +109,29 @@ namespace GameEngine
             {
                 this.myBall.location.X = myBall.Bounds.left;
                 this.myBall.velocity.X = -myBall.Environment.frictionConstant.X * this.myBall.velocity.X;
-                myBall.Sounds.ImpactSound.Play();
+                if(myBall.IsReleased)
+                    myBall.Sounds.ImpactSound.Play();
             }
             else if (this.myBall.location.X >= myBall.Bounds.right)//impact right wall
             {
                 this.myBall.location.X = myBall.Bounds.right;
                 this.myBall.velocity.X = -myBall.Environment.frictionConstant.X * this.myBall.velocity.X;
-                myBall.Sounds.ImpactSound.Play();
+                if (myBall.IsReleased)
+                    myBall.Sounds.ImpactSound.Play();
             }
             if (this.myBall.location.Y <= myBall.Bounds.top)//impact top wall
             {
                 this.myBall.location.Y = myBall.Bounds.top;
                 this.myBall.velocity.Y = -myBall.Environment.frictionConstant.Y * this.myBall.velocity.Y;
-                myBall.Sounds.ImpactSound.Play();
+                if (myBall.IsReleased)
+                    myBall.Sounds.ImpactSound.Play();
             } 
             else if (this.myBall.location.Y >= myBall.Bounds.bottom)// impact bottom wall
             {
                 this.myBall.location.Y = myBall.Bounds.bottom;
                 this.myBall.velocity.Y = -this.myBall.Environment.frictionConstant.Y*this.myBall.velocity.Y;
-                
-                myBall.Sounds.ImpactSound.Play();
+                if (myBall.IsReleased)
+                    myBall.Sounds.ImpactSound.Play();
             }
         }
         
