@@ -12,6 +12,7 @@ namespace GameEngine.GameEngine
 {
     public class ball
     {
+        public Color color { get; set; } = new Color();
         public Vector2D velocity { get; set; }
         public Vector2D acceleration { get; set; }
         public Vector2D forceVector { get; set; }
@@ -39,11 +40,12 @@ namespace GameEngine.GameEngine
             this.Bounds = new bounds();
             this.Sounds = new GameSounds();
             this.IsLockedForThrow = false;
+            this.color = Color.YellowGreen;
             
         }
         public void Draw(Graphics g)
         {
-            g.FillEllipse(Brushes.Red, (float)this.location.X-this.size/2, (float)this.location.Y-this.size/2,this.size,this.size);
+            g.FillEllipse(new SolidBrush(this.color), (float)this.location.X-this.size/2, (float)this.location.Y-this.size/2,this.size,this.size);
         }
         
         public void UpdateLocation(Vector2D newLocation)

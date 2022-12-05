@@ -145,6 +145,15 @@ namespace GameEngine
                 myBall.Reset();
             else if (e.KeyChar == (char)Keys.G || e.KeyChar == (char)Keys.G + 32)
                 myBall.Environment.HaveGravity = !myBall.Environment.HaveGravity;
+            
+        }
+        public override void Window_KeyUp(object sender, System.Windows.Forms.KeyEventArgs e)
+        {
+            
+            
+        }
+        public override void Window_KeyDown(object sender, KeyEventArgs e)
+        {
 
         }
         public override void Window_MouseUp(object sender, MouseEventArgs e)

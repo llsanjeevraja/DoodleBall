@@ -37,6 +37,8 @@ namespace GameEngine.GameEngine
             Window.Location = new Point(0, 0);
             Window.Paint += Renderer;
             Window.KeyPress += Window_KeyPress;
+            Window.KeyDown += Window_KeyDown;
+            Window.KeyUp += Window_KeyUp;
             Window.MouseUp += Window_MouseUp;
             Window.MouseMove += Window_MouseMove;
             Window.MouseDown += Window_MouseDown;
@@ -94,6 +96,8 @@ namespace GameEngine.GameEngine
         public abstract void OnUpdate(double deltatime);
         public abstract void Renderer(object sender, PaintEventArgs e);
         public abstract void Window_KeyPress(object sender, KeyPressEventArgs e);
+        public abstract void Window_KeyDown(object sender, KeyEventArgs e);
+        public abstract void Window_KeyUp(object sender, KeyEventArgs e);
         public abstract void Window_MouseUp(object sender, MouseEventArgs e);
         public abstract void Window_MouseMove(object sender, MouseEventArgs e);
         public abstract void Window_MouseDown(object sender, MouseEventArgs e);
