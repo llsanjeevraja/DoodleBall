@@ -22,9 +22,6 @@ namespace GameEngine.GameEngine
         public double forceValue { get; set; }
         public double velocityMultiplier { get; set; }
         public Vector2D location { get; set; }
-        public bool IsLockedForThrow { get; set; }
-        public bool IsReleased { get; set; }
-        
         public float size;
         public bounds Bounds;
         public arrow Arrow=new arrow();
@@ -42,7 +39,6 @@ namespace GameEngine.GameEngine
             this.forceVector = new Vector2D();
             this.Bounds = new bounds();
             this.Sounds = new GameSounds();
-            IsLockedForThrow = false;
             terminalVelocity = 10;
         }
         public void Draw(Graphics g)
@@ -79,7 +75,6 @@ namespace GameEngine.GameEngine
         {
             this.velocity.X = 0;
             this.velocity.Y = 0;
-            this.IsReleased = false;
         }
     }
 
