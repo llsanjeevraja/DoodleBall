@@ -15,7 +15,7 @@ namespace GameEngine.GameEngine
         
         public GameSounds()
         {
-            System.IO.Stream str = Properties.Resources.ImpactDrum;
+            System.IO.Stream str = Properties.Resources.glass_Ting;
             ImpactSound = new System.Media.SoundPlayer(str);
             
             str = Properties.Resources.StretchSound;

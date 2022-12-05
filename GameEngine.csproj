@@ -78,5 +78,8 @@
   <ItemGroup>
     <None Include="Resources\ImpactDrum.wav" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\glass_Ting.wav" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
