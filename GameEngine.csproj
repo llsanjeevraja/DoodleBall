@@ -46,7 +46,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DemoGame.cs" />
-    <Compile Include="GameEngine\Environment.cs" />
     <Compile Include="GameEngine\sounds.cs" />
     <Compile Include="GameEngine\Bounds.cs" />
     <Compile Include="GameEngine\ball.cs" />
