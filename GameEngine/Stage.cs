@@ -10,12 +10,17 @@ namespace GameEngine.GameEngine
 {
     public class Stage
     {
+        public StageSounds Sounds = new StageSounds();
         Vector2D ScreenSize=new Vector2D(0,0);
         public StageBounds Bounds = new StageBounds();
-        public StageSounds Sounds = new StageSounds();
+        
         private int infoTextSize=12;
         public myGameInput Input = new myGameInput();
-        public ball myBall = new ball();
+        public gameObject myBall = new gameObject();
+        public Stage()
+        {
+
+        }
         public void OnLoad(Vector2D ScreenSize)
         {
             myBall.location = CartiseanToScreen(0, 0);
@@ -84,7 +89,7 @@ namespace GameEngine.GameEngine
 
         }
 
-        private void CheckBounds(ball CurrentBall)
+        private void CheckBounds(gameObject CurrentBall)
         {
             if (CurrentBall.location.X <= this.Bounds.left)// impact left wall
             {

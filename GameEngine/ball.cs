@@ -10,7 +10,7 @@ using System.Windows.Forms.VisualStyles;
 
 namespace GameEngine.GameEngine
 {
-    public class ball
+    public class gameObject
     {
 
         public double mass { get; set; }
@@ -28,7 +28,7 @@ namespace GameEngine.GameEngine
         public bool IsReleased { get; set; }
         public arrow Arrow = new arrow();
 
-        public ball()
+        public gameObject()
         {
             this.mass = 100;
             this.size = 25;//set bulb size here
