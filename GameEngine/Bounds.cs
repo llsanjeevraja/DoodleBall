@@ -8,17 +8,17 @@ namespace GameEngine.GameEngine
 {
     public class bounds
     {
-        public double left { get; set; }
-        public double right { get; set; }
-        public double top { get; set; }
-        public double bottom { get; set; } 
+        public float left { get; set; }
+        public float right { get; set; }
+        public float top { get; set; }
+        public float bottom { get; set; } 
 
         public void Set(Vector2D screensize)
         {
-            this.left=screensize.X*0.1;
-            this.right=screensize.X*0.9;
-            this.top = screensize.Y * 0.1;
-            this.bottom = screensize.Y * 0.9;
+            this.left=screensize.X*0.1f;
+            this.right=screensize.X*0.9f;
+            this.top = screensize.Y * 0.1f;
+            this.bottom = screensize.Y * 0.9f;
         }
         
     }

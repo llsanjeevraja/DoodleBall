@@ -53,6 +53,7 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="GameEngine\Input.cs" />
+    <Compile Include="GameEngine\Stage.cs" />
     <Compile Include="GameEngine\Vector2D.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -76,6 +77,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\ImpactDrum.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Stretch.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Glass Ting.wav" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

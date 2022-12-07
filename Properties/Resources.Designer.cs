@@ -63,6 +63,15 @@ namespace GameEngine.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
         /// </summary>
+        internal static System.IO.UnmanagedMemoryStream GlassTing {
+            get {
+                return ResourceManager.GetStream("GlassTing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        /// </summary>
         internal static System.IO.UnmanagedMemoryStream ImpactDrum {
             get {
                 return ResourceManager.GetStream("ImpactDrum", resourceCulture);
@@ -72,9 +81,9 @@ namespace GameEngine.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
         /// </summary>
-        internal static System.IO.UnmanagedMemoryStream StretchSound {
+        internal static System.IO.UnmanagedMemoryStream Stretch {
             get {
-                return ResourceManager.GetStream("StretchSound", resourceCulture);
+                return ResourceManager.GetStream("Stretch", resourceCulture);
             }
         }
     }

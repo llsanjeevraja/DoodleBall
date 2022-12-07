@@ -8,15 +8,15 @@ namespace GameEngine.GameEngine
 {
     public class Vector2D
     {
-        public double X { get; set; }
-        public double Y { get; set; }
+        public float X { get; set; }
+        public float Y { get; set; }
 
         public Vector2D()
         {
             this.X = Zero().X;
             this.Y = Zero().Y;
         }
-        public Vector2D(double x, double y)
+        public Vector2D(float x, float y)
         {
             this.X = x;
             this.Y = y;
@@ -29,6 +29,7 @@ namespace GameEngine.GameEngine
         {
             return(Math.Sqrt(this.X* this.X + this.Y * this.Y));
         }
+
 
     }
 

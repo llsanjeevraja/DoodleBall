@@ -19,7 +19,7 @@ namespace GameEngine
         private bool boolShowInfo = true;
         public ball myBall = new ball();
         myGameInput Input=new myGameInput();
-        public DemoGame() : base(new GameEngine.Vector2D(1000,800), "Doodle Ball")
+        public DemoGame() : base("Doodle Ball")
         {
            
         }
@@ -100,26 +100,26 @@ namespace GameEngine
             {
                 this.myBall.location.X = myBall.Bounds.left;
                 this.myBall.velocity.X = -myBall.frictionConstant.X * this.myBall.velocity.X;
-                myBall.Sounds.ImpactSound.Play();
+                myBall.Sounds.GlassTing.Play();
             }
             else if (this.myBall.location.X >= myBall.Bounds.right)//impact right wall
             {
                 this.myBall.location.X = myBall.Bounds.right;
                 this.myBall.velocity.X = -myBall.frictionConstant.X * this.myBall.velocity.X;
-                myBall.Sounds.ImpactSound.Play();
+                myBall.Sounds.GlassTing.Play();
             }
             if (this.myBall.location.Y <= myBall.Bounds.top)//impact top wall
             {
                 this.myBall.location.Y = myBall.Bounds.top;
                 this.myBall.velocity.Y = -myBall.frictionConstant.Y * this.myBall.velocity.Y;
-                myBall.Sounds.ImpactSound.Play();
+                myBall.Sounds.GlassTing.Play();
             } 
             else if (this.myBall.location.Y >= myBall.Bounds.bottom)// impact bottom wall
             {
                 this.myBall.location.Y = myBall.Bounds.bottom;
                 this.myBall.velocity.Y = -this.myBall.frictionConstant.Y*this.myBall.velocity.Y;
-                
-                myBall.Sounds.ImpactSound.Play();
+
+                myBall.Sounds.GlassTing.Play();
             }
         }
         
@@ -133,7 +133,7 @@ namespace GameEngine
             else if (e.KeyChar == (char)Keys.F || e.KeyChar == (char)Keys.F + 32)
                 ToggleFullScreen();
             else if (e.KeyChar == (char)Keys.R || e.KeyChar == (char)Keys.R + 32)
-                myBall.Reset();
+                myBall.ResetMovement();
 
         }
         public override void Window_MouseUp(object sender, MouseEventArgs e)
@@ -180,8 +180,8 @@ namespace GameEngine
         private Vector2D CartiseanToScreen(double x, double y)
         {
             Vector2D temp = new Vector2D();
-            temp.X = this.ScreenSize.X / 2 + x;
-            temp.Y = this.ScreenSize.Y / 2 - y;
+            temp.X = (float)(this.ScreenSize.X / 2 + x);
+            temp.Y = (float)(this.ScreenSize.Y / 2 - y);
             return temp;
         }
 

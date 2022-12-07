@@ -20,19 +20,20 @@ namespace GameEngine.GameEngine
     public abstract class GameEngine
     {
         public Vector2D ScreenSize = new Vector2D(800,600);
+        public static bounds Bounds = new bounds();
         private string Title="My Game";
         private Canvas Window = null;
         private bool boolFullScreen = false;
         private Thread GameLoopthread = null;
 
-        public GameEngine(Vector2D screenSize, string title)
+        public GameEngine( string title)
         {
-            ScreenSize = screenSize;
+            Bounds.Set(this.ScreenSize);
             Title = title;
             Window = new Canvas();
-            Window.FormBorderStyle = FormBorderStyle.None;
-            Window.WindowState = FormWindowState.Maximized;
-            Window.Size = new Size((int)screenSize.X, (int)screenSize.Y);
+            //Window.FormBorderStyle = FormBorderStyle.None;
+            //Window.WindowState = FormWindowState.Maximized;
+            Window.Size = new Size((int)this.ScreenSize.X, (int)this.ScreenSize.Y);
             Window.Text = this.Title;
             Window.Location = new Point(0, 0);
             Window.Paint += Renderer;
@@ -47,7 +48,7 @@ namespace GameEngine.GameEngine
             
         }
 
-
+        
 
         void GameLoop()
         {
@@ -56,7 +57,6 @@ namespace GameEngine.GameEngine
             {
                 DateTime frameStart;
                 DateTime frameEnd;
-                double FixedFrameRate = 0.02;// formaintaining frame rate of 50
                 double deltaTime = 1;
                 while (GameLoopthread.IsAlive)
                 {
