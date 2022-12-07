@@ -73,16 +73,13 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\tightingSound.wav" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\ImpactDrum.wav" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Stretch.wav" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Glass Ting.wav" />
+    <None Include="Resources\GlassTing.wav" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

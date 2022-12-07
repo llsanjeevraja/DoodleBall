@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace GameEngine.GameEngine
 {
-    public class bounds
+    public class StageBounds
     {
         public float left { get; set; }
         public float right { get; set; }

@@ -29,7 +29,7 @@ namespace GameEngine.GameEngine
         {
             return(Math.Sqrt(this.X* this.X + this.Y * this.Y));
         }
-
+        
 
     }
 

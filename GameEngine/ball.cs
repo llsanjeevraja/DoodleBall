@@ -26,11 +26,7 @@ namespace GameEngine.GameEngine
         public Vector2D location { get; set; }
         public bool IsLockedForThrow { get; set; }
         public bool IsReleased { get; set; }
-        
-        
-        public bounds Bounds;
-        public arrow Arrow=new arrow();
-        public GameSounds Sounds=null;
+        public arrow Arrow = new arrow();
 
         public ball()
         {
@@ -43,18 +39,28 @@ namespace GameEngine.GameEngine
             this.velocityMultiplier = 0.02;
             this.acceleration = new Vector2D(0,0.3f);
             this.forceVector = new Vector2D();
-            this.Bounds = new bounds();
-            this.Sounds = new GameSounds();
+            
             IsLockedForThrow = false;
             terminalVelocity = 10;
         }
-        public void SetProperties()
+        public void SetProperties(float mass,float size,Color color,bool IsReleased,Vector2D location,Vector2D velocity)
         {
-
+            this.mass = mass;
+            this.size = size;
+            this.color = color;
+            this.IsReleased = IsReleased;
+            this.location.X = location.X;
+            this.location.Y = location.Y;
+            this.velocity.X = velocity.X;
+            this.velocity.Y = velocity.Y;
         }
         public void Draw(Graphics g)
         {
             g.FillEllipse(new SolidBrush(this.color),(float)(this.location.X-this.size/2), (float)(this.location.Y-this.size/2),(float)this.size, (float)this.size);
+            if(IsLockedForThrow)
+            {
+                this.Arrow.Draw(g);
+            }
         }
         
         public void UpdateLocation(Vector2D newLocation)
@@ -85,7 +91,9 @@ namespace GameEngine.GameEngine
             this.acceleration.Y = 0;
             this.IsReleased = false;
         }
-    }
+        
+        }
+ 
 
     public class arrow
     {

@@ -7,13 +7,13 @@ using System.Threading.Tasks;
 
 namespace GameEngine.GameEngine
 {
-    public class GameSounds
+    public class StageSounds
     {
         public SoundPlayer ImpactSound = null;
         public SoundPlayer StretchSound = null;
         public SoundPlayer GlassTing = null;
 
-        public GameSounds()
+        public StageSounds()
         {
             System.IO.Stream str = Properties.Resources.ImpactDrum;
             ImpactSound = new System.Media.SoundPlayer(str);

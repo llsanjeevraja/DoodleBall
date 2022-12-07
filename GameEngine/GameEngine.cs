@@ -19,8 +19,7 @@ namespace GameEngine.GameEngine
     }
     public abstract class GameEngine
     {
-        public Vector2D ScreenSize = new Vector2D(800,600);
-        public static bounds Bounds = new bounds();
+        public Vector2D ScreenSize = new Vector2D(1600,1200);
         private string Title="My Game";
         private Canvas Window = null;
         private bool boolFullScreen = false;
@@ -28,11 +27,10 @@ namespace GameEngine.GameEngine
 
         public GameEngine( string title)
         {
-            Bounds.Set(this.ScreenSize);
             Title = title;
             Window = new Canvas();
-            //Window.FormBorderStyle = FormBorderStyle.None;
-            //Window.WindowState = FormWindowState.Maximized;
+            Window.FormBorderStyle = FormBorderStyle.None;
+            Window.WindowState = FormWindowState.Maximized;
             Window.Size = new Size((int)this.ScreenSize.X, (int)this.ScreenSize.Y);
             Window.Text = this.Title;
             Window.Location = new Point(0, 0);
