@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -133,9 +134,22 @@ namespace GameEngine.GameEngine
 
     public class arrow
     {
+        private Pen pen = null;
+        private Color color = Color.White;
         public Vector2D Nock {get; set; }
         public Vector2D Poonchh {get; set; }
-        public int Width = 2;
+        private int Width;
+        public arrow()
+        {
+            Width = 1;
+            this.Nock = new Vector2D();
+            this.Poonchh = new Vector2D();
+            this.color = Color.Yellow;
+            pen= new Pen(color,Width);
+            //pen.DashStyle = DashStyle.Dot; 
+            pen.DashPattern= new float[] { 3.0F, 6.0F, 3.0F, 6.0F };
+
+        }
         public Vector2D GetVector()
         {
             Vector2D temp = new Vector2D();
@@ -143,11 +157,7 @@ namespace GameEngine.GameEngine
             temp.Y=Nock.Y - Poonchh.Y;
             return temp;
         }
-        public arrow()
-        {
-            this.Nock = new Vector2D();
-            this.Poonchh = new Vector2D();
-        }
+        
         public void UpdatePoonchLocation(Vector2D newPoint)
         {
             this.Poonchh.X = newPoint.X;
@@ -171,7 +181,7 @@ namespace GameEngine.GameEngine
         public void Draw(Graphics g)
         {
             //g.DrawLine(new Pen(Brushes.Blue, 5), (float)this.Arrow.Poonchh.X, (float)this.Arrow.Poonchh.Y, (float)0, (float)0);
-            g.DrawLine(new Pen(Brushes.Blue, this.Width), (float)this.Poonchh.X, (float)this.Poonchh.Y, (float)this.Nock.X, (float)this.Nock.Y);
+            g.DrawLine(this.pen, (float)this.Poonchh.X, (float)this.Poonchh.Y, (float)this.Nock.X, (float)this.Nock.Y);
         }
 
     }
