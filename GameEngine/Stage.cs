@@ -31,29 +31,19 @@ namespace GameEngine.GameEngine
         public void OnUpdate()
         {
             myBall.Update();
-            
+            if (Input.lButton)
+            {
+                myBall.Drag();
+            }
+            else
+            {
+                myBall.Release();
+            }
             if (!myBall.IsReleased)
                 myBall.UpdateLocation(Input.mouseLocation);
 
-            if (!myBall.IsLockedForThrow && !myBall.IsReleased && Input.lButton)// ball is loaded for play
-            {
-                myBall.Arrow.UpdateNochLocation(myBall.location);
-                myBall.Arrow.UpdatePoonchLocation(myBall.location);
-                myBall.IsLockedForThrow = true;
-            }
-            else if (myBall.IsLockedForThrow && !myBall.IsReleased && Input.lButton)// ball is captured and being dragged for throw
-            {
-                myBall.Arrow.UpdatePoonchLocation(myBall.location);
-                myBall.UpdateForceOnBall();
-
-            }
-            else if (myBall.IsLockedForThrow && !myBall.IsReleased && !Input.lButton)// means that ball has been throw away and moving
-            {
-                myBall.IsLockedForThrow = false;
-                myBall.IsReleased = true;
-                myBall.IntialiseMovement();
-
-            }
+            
+            
             CheckBounds(myBall);
         }
         public void Reset()

@@ -32,15 +32,15 @@ namespace GameEngine.GameEngine
         public static Vector2D operator+(Vector2D A,Vector2D B)
         {
             Vector2D temp = new Vector2D();
-            temp.X = A.X + B.Y;
-            temp.Y = A.Y + B.X;
+            temp.X = A.X + B.X;
+            temp.Y = A.Y + B.Y;
             return temp;
         }
         public static Vector2D operator-(Vector2D A, Vector2D B)
         {
             Vector2D temp = new Vector2D();
-            temp.X = A.X - B.Y;
-            temp.Y = A.Y - B.X;
+            temp.X = A.X - B.X;
+            temp.Y = A.Y - B.Y;
             return temp;
         }
 

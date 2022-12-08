@@ -39,7 +39,6 @@ namespace GameEngine.GameEngine
             this.velocityMultiplier = 0.02;
             this.acceleration = new Vector2D(0,0.3f);
             this.forceVector = new Vector2D();
-            
             IsLockedForThrow = false;
             terminalVelocity = 10;
         }
@@ -66,13 +65,40 @@ namespace GameEngine.GameEngine
         {
             this.location.X = this.location.X + this.velocity.X;
             this.location.Y = this.location.Y + this.velocity.Y;
+            if(this.IsReleased )
+            { 
+                    this.environmet.boolGravityOn=true;
+            }
             if (this.environmet.boolGravityOn)
             {
                 this.velocity.X = this.velocity.X + this.acceleration.X;
                 this.velocity.Y = this.velocity.Y + this.acceleration.Y;
             }
         }
-        
+        public void Drag()
+        {
+            if (!this.IsLockedForThrow && !this.IsReleased )// ball is loaded for play
+            {
+                this.Arrow.UpdateNochLocation(this.location);
+                this.Arrow.UpdatePoonchLocation(this.location);
+                this.IsLockedForThrow = true;
+            }
+            else if (this.IsLockedForThrow && !this.IsReleased )// ball is captured and being dragged for throw
+            {
+                this.Arrow.UpdatePoonchLocation(this.location);
+                this.UpdateForceOnBall();
+
+            }
+        }
+        public void Release()
+        {
+            if (this.IsLockedForThrow && !this.IsReleased)// means that ball has been throw away and moving
+            {
+                this.IsLockedForThrow = false;
+                this.IsReleased = true;
+                this.IntialiseMovement();
+            }
+        }
         public void UpdateLocation(Vector2D newLocation)
         {
             this.location.X = newLocation.X;
