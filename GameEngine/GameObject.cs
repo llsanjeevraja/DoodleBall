@@ -62,6 +62,16 @@ namespace GameEngine.GameEngine
                 this.Arrow.Draw(g);
             }
         }
+        public void Update()
+        {
+            this.location.X = this.location.X + this.velocity.X;
+            this.location.Y = this.location.Y + this.velocity.Y;
+            if (this.environmet.boolGravityOn)
+            {
+                this.velocity.X = this.velocity.X + this.acceleration.X;
+                this.velocity.Y = this.velocity.Y + this.acceleration.Y;
+            }
+        }
         
         public void UpdateLocation(Vector2D newLocation)
         {

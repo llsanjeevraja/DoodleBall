@@ -25,12 +25,24 @@ namespace GameEngine.GameEngine
         {
             return new Vector2D(0, 0);
         }
-        public double Magnitude()
+        public float Magnitude()
         {
-            return(Math.Sqrt(this.X* this.X + this.Y * this.Y));
+            return (float)(Math.Sqrt(this.X * this.X + this.Y * this.Y));
         }
-        
+        public static Vector2D operator+(Vector2D A,Vector2D B)
+        {
+            Vector2D temp = new Vector2D();
+            temp.X = A.X + B.Y;
+            temp.Y = A.Y + B.X;
+            return temp;
+        }
+        public static Vector2D operator-(Vector2D A, Vector2D B)
+        {
+            Vector2D temp = new Vector2D();
+            temp.X = A.X - B.Y;
+            temp.Y = A.Y - B.X;
+            return temp;
+        }
 
     }
-
 }

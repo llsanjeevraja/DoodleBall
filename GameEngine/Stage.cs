@@ -30,13 +30,7 @@ namespace GameEngine.GameEngine
         }
         public void OnUpdate()
         {
-            myBall.location.X = myBall.location.X + myBall.velocity.X;
-            myBall.location.Y = myBall.location.Y + myBall.velocity.Y;
-            if(this.bookGravityOn && this.myBall.environmet.boolGravityOn)
-            {
-                myBall.velocity.X = myBall.velocity.X + myBall.acceleration.X;
-                myBall.velocity.Y = myBall.velocity.Y + myBall.acceleration.Y;
-            }
+            myBall.Update();
             
             if (!myBall.IsReleased)
                 myBall.UpdateLocation(Input.mouseLocation);
@@ -53,7 +47,7 @@ namespace GameEngine.GameEngine
                 myBall.UpdateForceOnBall();
 
             }
-            else if (myBall.IsLockedForThrow && !myBall.IsReleased && !Input.lButton)// means that ball has been throw away
+            else if (myBall.IsLockedForThrow && !myBall.IsReleased && !Input.lButton)// means that ball has been throw away and moving
             {
                 myBall.IsLockedForThrow = false;
                 myBall.IsReleased = true;
