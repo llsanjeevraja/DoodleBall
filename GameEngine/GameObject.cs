@@ -13,10 +13,10 @@ namespace GameEngine.GameEngine
     public class gameObject
     {
 
-        public double mass { get; set; }
-        public double size { get; set; }
+        public float mass { get; set; }
+        public float size { get; set; }
         public Color color { get; set; }
-        public Vector2D frictionConstant ;
+        public Environment environmet = new Environment();
         public Vector2D velocity { get; set; }
         public double terminalVelocity { get; set; }
         public Vector2D acceleration { get; set; }
@@ -33,7 +33,7 @@ namespace GameEngine.GameEngine
             this.mass = 100;
             this.size = 25;//set bulb size here
             this.color = Color.Aquamarine;
-            this.frictionConstant = new Vector2D(0.97f,0.95f);
+            this.environmet.frictionConstant = new Vector2D(0.97f,0.95f);
             this.location = new Vector2D();
             this.velocity = new Vector2D();
             this.velocityMultiplier = 0.02;

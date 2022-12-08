@@ -13,7 +13,7 @@ namespace GameEngine.GameEngine
         public StageSounds Sounds = new StageSounds();
         Vector2D ScreenSize=new Vector2D(0,0);
         public StageBounds Bounds = new StageBounds();
-        
+        public bool bookGravityOn { get; set; } = false;
         private int infoTextSize=12;
         public myGameInput Input = new myGameInput();
         public gameObject myBall = new gameObject();
@@ -23,7 +23,8 @@ namespace GameEngine.GameEngine
         }
         public void OnLoad(Vector2D ScreenSize)
         {
-            myBall.location = CartiseanToScreen(0, 0);
+            myBall.location.X = this.ScreenSize.X / 2;
+            myBall.location.Y = this.ScreenSize.Y / 2;  
             this.ScreenSize.X = ScreenSize.X;
             this.ScreenSize.Y = ScreenSize.Y;
         }
@@ -31,8 +32,12 @@ namespace GameEngine.GameEngine
         {
             myBall.location.X = myBall.location.X + myBall.velocity.X;
             myBall.location.Y = myBall.location.Y + myBall.velocity.Y;
-            myBall.velocity.X = myBall.velocity.X + myBall.acceleration.X;
-            myBall.velocity.Y = myBall.velocity.Y + myBall.acceleration.Y;
+            if(this.bookGravityOn && this.myBall.environmet.boolGravityOn)
+            {
+                myBall.velocity.X = myBall.velocity.X + myBall.acceleration.X;
+                myBall.velocity.Y = myBall.velocity.Y + myBall.acceleration.Y;
+            }
+            
             if (!myBall.IsReleased)
                 myBall.UpdateLocation(Input.mouseLocation);
 
@@ -61,6 +66,10 @@ namespace GameEngine.GameEngine
         {
             myBall.ResetMovement();
         }
+        public void doGravityOn()
+        {
+            this.bookGravityOn=!this.bookGravityOn;
+        }
         private Vector2D CartiseanToScreen(Vector2D point)
         {
             Vector2D temp = new Vector2D();
@@ -76,10 +85,10 @@ namespace GameEngine.GameEngine
             temp.Y = (float)(ScreenSize.Y / 2 - y);
             return temp;
         }
-        public void UpdateScreenSize(Vector2D ScreenSize)
+        public void UpdateScreenSize(int X,int Y)
         {
-            this.ScreenSize.X = ScreenSize.X;
-            this.ScreenSize.Y = ScreenSize.Y;
+            this.ScreenSize.X = X;
+            this.ScreenSize.Y = Y;
         }
         public void Draw(Graphics g)
         {
@@ -94,25 +103,25 @@ namespace GameEngine.GameEngine
             if (CurrentBall.location.X <= this.Bounds.left)// impact left wall
             {
                 CurrentBall.location.X = this.Bounds.left;
-                CurrentBall.velocity.X = -CurrentBall.frictionConstant.X * CurrentBall.velocity.X;
+                CurrentBall.velocity.X = -CurrentBall.environmet.frictionConstant.X * CurrentBall.velocity.X;
                 this.Sounds.GlassTing.Play();
             }
             else if (CurrentBall.location.X >= this.Bounds.right)//impact right wall
             {
                 CurrentBall.location.X = this.Bounds.right;
-                CurrentBall.velocity.X = -CurrentBall.frictionConstant.X * CurrentBall.velocity.X;
+                CurrentBall.velocity.X = -CurrentBall.environmet.frictionConstant.X * CurrentBall.velocity.X;
                 this.Sounds.GlassTing.Play();
             }
             if (CurrentBall.location.Y <= this.Bounds.top)//impact top wall
             {
                 CurrentBall.location.Y = this.Bounds.top;
-                CurrentBall.velocity.Y = -CurrentBall.frictionConstant.Y * CurrentBall.velocity.Y;
+                CurrentBall.velocity.Y = -CurrentBall.environmet.frictionConstant.Y * CurrentBall.velocity.Y;
                 this.Sounds.GlassTing.Play();
             }
             else if (CurrentBall.location.Y >= this.Bounds.bottom)// impact bottom wall
             {
                 CurrentBall.location.Y = this.Bounds.bottom;
-                CurrentBall.velocity.Y = -CurrentBall.frictionConstant.Y * CurrentBall.velocity.Y;
+                CurrentBall.velocity.Y = -CurrentBall.environmet.frictionConstant.Y * CurrentBall.velocity.Y;
 
                 this.Sounds.GlassTing.Play();
             }
@@ -147,6 +156,7 @@ namespace GameEngine.GameEngine
             g.DrawString($" ForceValue = ({myBall.forceValue})", new Font(FontFamily.GenericSerif, this.infoTextSize), Brushes.White, 50.0f, 100.0f + 2.0f * this.infoTextSize * infoTextLocationCounter++);
             g.DrawString($" Velocity = ({myBall.velocity.X},{myBall.velocity.Y})", new Font(FontFamily.GenericSerif, this.infoTextSize), Brushes.White, 50.0f, 100.0f + 2.0f * this.infoTextSize * infoTextLocationCounter++);
             g.DrawString($" velocity Value  = ({myBall.velocity.Magnitude()})", new Font(FontFamily.GenericSerif, this.infoTextSize), Brushes.White, 50.0f, 100.0f + 2.0f * this.infoTextSize * infoTextLocationCounter++);
+            g.DrawString($" Stage Gravity   = ({this.bookGravityOn})", new Font(FontFamily.GenericSerif, this.infoTextSize), Brushes.White, 50.0f, 100.0f + 2.0f * this.infoTextSize * infoTextLocationCounter++);
 
         }
     }

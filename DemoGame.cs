@@ -17,6 +17,7 @@ namespace GameEngine
         private double deltaTime = 100;
         private int infoTextSize = 12;
         private bool boolShowInfo = true;
+       
         public Stage Stage1 = new Stage();
         
         public DemoGame() : base("Doodle Ball")
@@ -47,7 +48,7 @@ namespace GameEngine
             
             if (boolShowInfo)
                 ShowScreenInfo(g);
-
+            this.frame++;
         }
 
         // input handlers
@@ -61,6 +62,9 @@ namespace GameEngine
                 ToggleFullScreen();
             else if (e.KeyChar == (char)Keys.R || e.KeyChar == (char)Keys.R + 32)
                 Stage1.Reset();
+            else if (e.KeyChar == (char)Keys.G || e.KeyChar == (char)Keys.G + 32)
+                Stage1.doGravityOn();
+
 
         }
         public override void Window_MouseUp(object sender, MouseEventArgs e)
@@ -89,6 +93,7 @@ namespace GameEngine
             Control control = (Control)sender;
             this.ScreenSize.X = control.Width;
             this.ScreenSize.Y = control.Height;
+            this.Stage1.UpdateScreenSize(control.Width, control.Height);
             this.Stage1.Bounds.Set(ScreenSize);
         }
 

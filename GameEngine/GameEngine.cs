@@ -20,7 +20,7 @@ namespace GameEngine.GameEngine
     public abstract class GameEngine
     {
         public Vector2D ScreenSize = new Vector2D(1600,1200);
-        private string Title="My Game";
+        private string Title="Doodle Balls";
         private Canvas Window = null;
         private bool boolFullScreen = false;
         private Thread GameLoopthread = null;

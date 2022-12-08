@@ -46,9 +46,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DemoGame.cs" />
+    <Compile Include="GameEngine\GhostBalls.cs" />
+    <Compile Include="GameEngine\ObjectEnvironment.cs" />
     <Compile Include="GameEngine\sounds.cs" />
     <Compile Include="GameEngine\Bounds.cs" />
-    <Compile Include="GameEngine\ball.cs" />
+    <Compile Include="GameEngine\GameObject.cs" />
     <Compile Include="GameEngine\GameEngine.cs">
       <SubType>Form</SubType>
     </Compile>
